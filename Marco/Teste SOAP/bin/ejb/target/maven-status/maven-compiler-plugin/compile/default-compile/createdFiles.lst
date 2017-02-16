@@ -1,0 +1,8 @@
+br\linx\converter\Converter.class
+br\linx\model\Contato_.class
+br\linx\local\rules\IContatoRules.class
+br\linx\dto\ContatoDTO.class
+br\linx\eao\ContatoEAO.class
+br\linx\local\rules\ContatoRules.class
+br\linx\model\Contato.class
+br\linx\rules\RulesLocal.class

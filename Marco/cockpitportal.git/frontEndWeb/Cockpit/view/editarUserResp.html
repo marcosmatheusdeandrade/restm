@@ -1,0 +1,42 @@
+<div ng-init="consultarResponsavel()">
+
+    <h3>Você pode alterar seus dados aqui.</h3>
+    <br>
+    <div class="sixteen wide column">
+        <form class="ui form">
+            <div class="four fields">
+                <div class="field">
+                    <label>Nome</label>
+                    <input type="text" ng-model="dadosParaAlterarSalvar.nome" autofocus>
+                </div>
+                <div class="field">
+                    <label>CPF</label>
+                    <input ng-model="dadosParaAlterarSalvar.cpf" ui-mask="999.999.999-99">
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input placeholder="Email" type="email" ng-model="dadosParaAlterarSalvar.email">
+                </div>
+                <div class="field">
+                    <label>Usuário</label>
+                    <input placeholder="Usuário" type="text" ng-model="dadosParaAlterarSalvar.login" >
+                </div>
+                <div class="field">
+                    <label>Senha</label>
+                    <input placeholder="Senha" type="password" ng-model="dadosParaAlterarSalvar.senha">
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <label>Redes:</label>
+                    <div ng-repeat="rede in dadosParaAlterarSalvar.redes">
+                        <input type="text" ng-model="rede.descricao">
+                    </div>
+                </div>
+            </div>
+           <!-- <p>Data de Cadastro: {{.dataCadastro | date:'dd/MM/yyyy'}}</p>-->
+            <button class="ui positive button" type="button" ng-click="salvarResponsavel()">Alterar
+            </button>
+        </form>
+    </div>
+</div>

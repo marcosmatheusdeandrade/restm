@@ -1,0 +1,112 @@
+<h1>RESPONSÁVEL</h1>
+<div ng-init="consultarResp()">
+    <div class="ui grid">
+        <div class="sixteen wide column">
+            <h2>Cadastrar novo usuário responsável</h2>
+            <p>Campos com <span class="obrigatorio">*</span> são obrigatórios. </p>
+            <form class="ui form">
+                <div class="three fields">
+                    <div class="field">
+                        <label>Nome<span class="obrigatorio">*</span></label>
+                        <input placeholder="Nome" type="text" ng-model="dadosAseremSalvosResp.nome"  autofocus>
+                    </div>
+                    <div class="field">
+                        <label>CPF<span class="obrigatorio">*</span></label>
+                        <input ng-model="dadosAseremSalvosResp.cpf" ui-mask="999.999.999-99">
+                    </div>
+                    <div class="field">
+                        <label>Usuário<span class="obrigatorio">*</span></label>
+                        <input placeholder="Usuário" type="text" ng-model="dadosAseremSalvosResp.login">
+                    </div>
+                    <div class="field">
+                        <label>Senha<span class="obrigatorio">*</span></label>
+                        <input placeholder="Senha" type="password" ng-model="dadosAseremSalvosResp.senha">
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>E-mail<span class="obrigatorio">*</span></label>
+                        <input placeholder="Email" type="text" ng-model="dadosAseremSalvosResp.email">
+                    </div>
+                    <div class="field">
+                        <label>Códigos Diretor<span class="obrigatorio">*</span></label>
+                        <input placeholder="Códigos Diretor" type="number" ng-model="dadosAseremSalvosResp.numeroCodigosAdiquiridosDiretor">
+                    </div>
+                    <div class="field">
+                        <label>Códigos Vendedor<span class="obrigatorio">*</span></label>
+                        <input placeholder="Códigos Vendedor" type="number" ng-model="dadosAseremSalvosResp.numeroCodigosAdiquiridosVendedor">
+                    </div>
+                </div>
+                <button class="ui positive right floated button" type="button" ng-click="addRedeLista()">Adicionar Rede +</button>
+                <br>
+                <br>
+                <table class="ui striped table">
+                    <thead>
+                        <tr>
+                            <th>Descrição da Rede:<span class="obrigatorio">*</span></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in dadosAseremSalvosResp.redes">
+                            <td>
+                                <input type="text" placeholder="Descrição da Rede" ng-model="item.descricao">
+                            </td>
+                            <td>
+                                <button class="ui small red icon button" ng-click="excluirRede(rede)">
+                                    <i class="remove icon"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="ui positive button" type="button" ng-click="salvarResposavel()">Salvar
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column right aligned">
+            <form ng-submit="consultarResp()">
+                <div class="ui icon input">
+                    <input placeholder="Pesquisar..." type="text" ng-model="pesquisaResp">
+                    <i class="search icon"></i>
+                </div>
+            </form>
+            <table class="ui compact striped table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Usuário</th>
+                        <th>E-mail</th>
+                        <th>Data de cadastro</th>
+                        <th>Cód. Diretor</th>
+                        <th>Cód. Vendedor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="responsavel in responsaveis | filter:pesquisaResp | orderBy: orderList">
+                        <td>{{responsavel.nome}}</td>
+                        <td>{{responsavel.cpf}}</td>
+                        <td>{{responsavel.login}}</td>
+                        <td>{{responsavel.email}}</td>
+                        <td>{{responsavel.dataCadastro | date:'dd/MM/yyyy'}}</td>
+                        <td>{{responsavel.numeroCodigosAdiquiridosDiretor}}</td>
+                        <td>{{responsavel.numeroCodigosAdiquiridosVendedor}}</td>
+                        <td class="right aligned">
+                            <button class="ui small teal icon button" ng-click="editarResponsavel(responsavel)">
+                                <i class="write icon"></i>
+                            </button>
+                            <button class="ui small red icon button" ng-click="excluirResp(responsavel)">
+                                <i class="remove icon"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

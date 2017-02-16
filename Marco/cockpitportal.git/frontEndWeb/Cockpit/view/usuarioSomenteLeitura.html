@@ -1,0 +1,35 @@
+<div ng-init="consultarRedesResp()">
+   <div class="row">
+        <main class="ui two column grid">
+            <h2 class="ui header column">Visualizar Responsáveis</h2>
+            <div class="right aligned column">
+                <form ng-submit="consultarRedesResp()">
+                    <div class="ui small icon input ">
+                        <input placeholder="Pesquisar..." type="text" ng-model="responsavelRede">
+                        <i class="search icon"></i>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <div ng-repeat="responsavel in responsaveis | filter:responsavelRede | orderBy:orderList">
+        <div class="ui segments">
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="four wide column"><strong>Nome: </strong>{{responsavel.nome}}</div>
+                    <div class="four wide column"><strong>CPF: </strong>{{responsavel.cpf}}</div>
+                    <div class="four wide column"><strong>Usuário: </strong>{{responsavel.login}}</div>
+                    <div class="four wide column"><strong>Data de Cadastro: </strong>{{responsavel.dataCadastro | date:'dd/MM/yyyy'}}</div>
+                </div>
+            </div>
+            <div ng-repeat="rede in responsavel.redes | orderBy:orderListRede">
+                <div class="ui secondary segment">
+                    <div class="ui grid">
+                        <div class="nine wide column"><strong>Rede: </strong>{{rede.descricao}}</div>
+                        <div class="four wide column"><strong>Código: </strong><span class="monospace">{{rede.idInstalacaoCockpit}}</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

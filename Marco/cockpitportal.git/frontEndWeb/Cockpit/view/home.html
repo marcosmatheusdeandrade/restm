@@ -1,0 +1,39 @@
+<div ng-init="consultarAdmin()">
+    <h2>Bem vindo(a)</h2>
+
+
+    <h3><i class="user icon"></i>{{nomeUsuario}}</h3>
+
+
+    <button class="small ui button" ng-click="mostrarDivAlterar()">Editar seus dados</button>
+    <br>
+    <br>
+    <div ng-show="abrir">
+        <div class="sixteen wide column">
+            <form class="ui form">
+                <div class="four fields">
+                    <div class="field">
+                        <label>Nome</label>
+                        <input placeholder="Nome" type="text" ng-model="dadosParaAlterarSalvar.nome">
+                    </div>
+                    <div class="field">
+                        <label>Email</label>
+                        <input placeholder="Email" type="email" ng-model="dadosParaAlterarSalvar.email">
+                    </div>
+                    <div class="field">
+                        <label>Usuário</label>
+                        <input placeholder="Usuário" type="text" ng-model="dadosParaAlterarSalvar.login">
+                    </div>
+                    <div class="field">
+                        <label>Senha</label>
+                        <input placeholder="Senha" type="password" ng-model="dadosParaAlterarSalvar.senha">
+                    </div>
+                </div>
+                <button class="tiny ui red button" type="button" ng-click="mostrarDivAlterarCancelar()">Cancelar</button>
+                <button class="tiny ui positive button" type="button" ng-click="salvarAdmin()">Editar
+
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

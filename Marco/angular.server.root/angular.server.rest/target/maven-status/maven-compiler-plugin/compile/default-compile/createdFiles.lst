@@ -1,0 +1,5 @@
+br\experience\angular\server\rest\services\IContatoRestService.class
+br\experience\angular\server\rest\RestApplication.class
+br\experience\angular\server\rest\services\ContatoRestService.class
+br\experience\angular\server\rest\services\OperadoraRestService.class
+br\experience\angular\server\rest\services\IOperadoraRestService.class

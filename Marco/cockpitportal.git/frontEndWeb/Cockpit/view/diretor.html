@@ -1,0 +1,153 @@
+<div class="ui pointing secondary menu">
+    <a class="active item" data-tab="diretor">Diretor</a>
+    <a class="item" data-tab="cadDiretor">Cadastro de Diretor</a>
+</div>
+
+<div class="ui active tab" data-tab="diretor">
+    <!--Barra de status dos códigos gerados-->
+    <div ng-init="consultarDiretor()">
+        <div class="row">
+            <main class="ui three column grid">
+                <h2 class="ui header column">Diretor</h2>
+                <div class="column">
+                    <div class="ui indicating tiny progress" data-value="0" data-total="10" id="statusCodigosDiretor">
+                        <div class="bar"></div>
+                        <div class="label">Códigos utilizados</div>
+                    </div>
+                </div>
+                <div class="column right aligned">
+                    <form ng-submit="consultarDiretor()">
+                        <div class="ui small icon input ">
+                            <input placeholder="Pesquisar..." type="text" ng-model="pesquisaDiretor">
+                            <i class="search icon"></i>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+        <!--/Barra de Status-->
+        <div ng-repeat="diretor in diretores | filter:pesquisaDiretor">
+            <div class="ui segments">
+                <div class="ui segment">
+                    <div class="ui grid">
+                        <div class="eight wide column"><strong>Nome: </strong>{{diretor.nome}}</div>
+                        <div class="three wide column"><strong>CPF: </strong>{{diretor.cpf}}</div>
+                        <div class="five wide column">
+                            <div class=" tiny ui right floated buttons">
+                                <button class="ui positive button" ng-click="diretor.exibirPainelGerarCodigo=true">Gerar Código</button>
+                                <div class="or" data-text=""></div>
+                                <button class="ui red button" ng-click="diretor.exibirPainelExcluir=true">Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-repeat="dispositivoAcesso in diretor.dispositivos">
+                    <div class="ui secondary segment">
+                        <div class="ui grid">
+                            <div class="nine wide column"><strong>Aparelho: </strong>{{dispositivoAcesso.modelo}}</div>
+                            <div class="four wide column"><strong>Código: </strong> {{dispositivoAcesso.codigoAcesso}}</div>
+                            <div class="three wide column">
+                                <button class="ui tiny red right floated button" ng-click="dispositivoAcesso.exibirPainelExcluirAparelho=true">Excluir aparelho</button>
+                            </div>
+                        </div>
+
+
+                        <div ng-if="dispositivoAcesso.exibirPainelExcluirAparelho" class="ui red segment">
+                            <div class="ui grid">
+                                <div class="eight wide column"><i class="warning circle icon"></i>Deseja excluir esse aparelho?</div>
+                                <div class="eight wide column">
+                                    <button class="ui inverted tiny green right floated button" ng-click="removerAparelhoDiretorSim(diretor, dispositivoAcesso)">Sim, Excluir</button>
+                                    <button class="ui tiny red right floated basic button" ng-click="dispositivoAcesso.exibirPainelExcluirAparelho=false">Cancelar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="diretor.exibirPainelGerarCodigo" class="ui orange segment">
+                    <div class="ui grid">
+                        <div class="eight wide column"><i class="warning circle icon"></i>Deseja Gerar Código para {{diretor.nome}}?</div>
+                        <div class="eight wide column">
+                            <button class="ui inverted tiny green right floated button" ng-click="gerarCodigoDiretorSim(diretor)">Sim, Gerar código</button>
+                            <button class="ui tiny red right floated basic button" ng-click="diretor.exibirPainelGerarCodigo=false">Cancelar</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="diretor.gerandoCodigo" class="ui orange segment">
+                    <div class="ui grid">
+                        <div class="five wide column">
+                            <div class="ui small active loader"></div>
+                            Gerando código...
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="diretor.codigoGerado" class="ui success small message segment">
+                    <i class="close icon" ng-click="reloadPagina()"></i>
+                    <div class="header">
+                        Código gerado com sucesso! Insira o código no local indicado em seu aparelho celular.
+                        <h3>Código: {{diretor.codigoGerado}}</h3>
+                    </div>
+                </div>
+
+                <div ng-if="diretor.exibirPainelExcluir" class="ui red segment">
+                    <div class="ui grid">
+                        <div class="eight wide column"><i class="warning circle icon"></i>Deseja excluir {{diretor.nome}}?</div>
+                        <div class="eight wide column">
+                            <button class="ui inverted tiny green right floated button" ng-click="excluirDiretor(diretor)">Sim, Excluir</button>
+                            <button class="ui tiny red right floated basic button" ng-click="diretor.exibirPainelExcluir=false">Cancelar</button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Cadastro de Diretor-->
+<div class="ui tab" data-tab="cadDiretor">
+    <div class="row">
+        <h2 class="ui header column">Cadastrar Diretor</h2>
+        <br>
+    </div>
+    <form class="ui form" ng-submit="salvarDiretor()">
+        <div class="fields">
+            <div class="eight wide field">
+                <label>Nome</label>
+                <input placeholder="Nome" name="nome" type="text" ng-model="dadosAseremSalvosDiretor.nome" autofocus>
+            </div>
+            <div class="three wide field">
+                <label>CPF</label>
+                <input ng-model="dadosAseremSalvosDiretor.cpf" ui-mask="999.999.999-99">
+            </div>
+            <div class="botaoSalvarDiretor">
+                <button class="positive ui button" ng-click="salvarDiretor()">Salvar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<!--Script-->
+<script>
+    $('#statusCodigosDiretor')
+        .progress('increment');
+    $('#statusCodigosDiretor')
+        .progress({
+            text: {
+                active: 'Códigos utilizados: {value} de {total}',
+                success: '{total} - Todos os códigos utilizados!'
+            }
+        });
+
+    $(document).ready(function () {
+        $('.menu .item').tab();
+    });
+
+</script>
+<!--/Script-->

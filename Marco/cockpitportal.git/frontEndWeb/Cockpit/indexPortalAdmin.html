@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt" ng-app="appAdmin">
+
+<head>
+    <meta charset="utf-8">
+    <script>
+        if (!window.sessionStorage.logado) {
+            window.location = "login.html";
+        };
+    </script>
+    <title>Portal Admin</title>
+    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" href="css/stylePortalAdmin.css">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/semantic-ui/dist/semantic.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
+
+
+</head>
+
+<body>
+    <div ng-controller="ctrlAdmin">
+
+        <div ng-if="isAdmin" ng-include="'view/menuAdmin.html'"></div>
+        <div ng-if="isResp == true && isAdmin == false" ng-include="'view/menuComercial.html'"></div>
+        <div ng-if="isResp == false && isAdmin == false" ng-include="'view/menuSomenteLeitura.html'"></div>
+
+        <div class="ui container">
+            <div ng-view class="corpoDaPagina"></div>
+        </div>
+
+    </div>
+    <script src="js/scriptPortalAdmin.js"></script>
+    <script src="js/config.js"></script>
+</body>
+
+</html>

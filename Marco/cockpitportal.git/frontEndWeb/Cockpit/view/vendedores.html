@@ -1,0 +1,235 @@
+<!--Menu tab-->
+<div class="ui pointing secondary menu">
+    <a class="active item" data-tab="gerente">Gerentes</a>
+    <a class="item" data-tab="vendedor">Vendedores</a>
+</div>
+<!--/Menu tab-->
+
+<!--Tab Gerentes-->
+<div class="ui active tab" data-tab="gerente">
+    <!--Status de códigos e pesquisa-->
+    <div class="row">
+        <main class="ui three column grid">
+            <h2 class="ui header column">Gerentes</h2>
+            <div class="column">
+                <div class="ui indicating tiny progress" data-value="0" data-total="10" id="statusCodigosGerente">
+                    <div class="bar"></div>
+                    <div class="label">Códigos utilizados</div>
+                </div>
+            </div>
+
+            <div class="right aligned column">
+                <form ng-submit="pesquisarGerente()">
+                    <div class="ui small icon input ">
+                        <input placeholder="Pesquisar..." type="text" ng-model="filtroPesquisaGerente.nome">
+                        <i class="search icon"></i>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <!--/Status de códigos e pesquisa-->
+
+    <!--Lista Gerentes-->
+    <div ng-repeat="gerente in gerentes | filter:filtroPesquisaGerente.nome">
+        <div class="ui segments">
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="six wide column"><strong>Nome: </strong> {{gerente.nome}}</div>
+                    <div class="three wide column"><strong>CPF: </strong>{{gerente.cpf}}</div>
+                    <div class="three wide column">
+                        <strong>Situação: </strong>{{gerente.situacao}}</div>
+                    <div class="four wide column">
+                        <div class=" tiny ui right floated buttons">
+                            <button class="ui positive button" ng-disabled="!gerente.podeGerarCodigo" ng-click="gerente.exibirPainelGerarCodigo=true">Gerar Código</button>
+                            <div class="or" data-text=""></div>
+                            <button class="ui red button" ng-disabled="!gerente.podeSerRemovidoDaListagem" ng-click="gerente.exibirPainelExcluir=true">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="gerente.exibirPainelGerarCodigo" class="ui orange segment">
+                <div class="ui grid">
+                    <div class="eight wide column"><i class="warning circle icon"></i>Deseja Gerar Código para {{gerente.nome}}?</div>
+                    <div class="eight wide column">
+                        <button class="ui inverted tiny green right floated button" ng-click="gerarCodigoGerenteSim(gerente)">Sim, Gerar código</button>
+                        <button class="ui tiny red right floated basic button" ng-click="gerente.exibirPainelGerarCodigo=false">Cancelar</button>
+
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="dispositivoAcesso in gerente.dispositivosAcesso">
+                <div class="ui secondary segment">
+                    <div class="ui grid">
+                        <div class="nine wide column"><strong>Aparelho: </strong>{{dispositivoAcesso.modelo}}</div>
+                        <div class="four wide column"><strong>Código: </strong> {{dispositivoAcesso.codigoAcesso}}</div>
+                        <div class="three wide column">
+                            <button class="ui tiny red right floated button" ng-click="dispositivoAcesso.exibirPainelExcluirAparelho=true">Excluir aparelho</button>
+                        </div>
+                    </div>
+
+
+                    <div ng-if="dispositivoAcesso.exibirPainelExcluirAparelho" class="ui red segment">
+                        <div class="ui grid">
+                            <div class="eight wide column"><i class="warning circle icon"></i>Deseja excluir esse aparelho?</div>
+                            <div class="eight wide column">
+                                <button class="ui inverted tiny green right floated button" ng-click="removerAparelhoGerenteSim(gerente, dispositivoAcesso)">Sim, Excluir</button>
+                                <button class="ui tiny red right floated basic button" ng-click="dispositivoAcesso.exibirPainelExcluirAparelho=false">Cancelar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="gerente.gerandoCodigo" class="ui orange segment">
+                <div class="ui grid">
+                    <div class="five wide column">
+                        <div class="ui small active loader"></div>
+                        Gerando código...
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="gerente.codigoGerado" class="ui success small message segment">
+                <i class="close icon" ng-click="reloadPagina()"></i>
+                <div class="header">
+                    Código gerado com sucesso! Insira o código no local indicado em seu aparelho celular.
+                    <h3>Código: {{gerente.codigoGerado}}</h3>
+                </div>
+            </div>
+
+            <div ng-if="gerente.exibirPainelExcluir" class="ui red segment">
+                <div class="ui grid">
+                    <div class="eight wide column"><i class="warning circle icon"></i>Deseja excluir {{gerente.nome}}?</div>
+                    <div class="eight wide column">
+                        <button class="ui inverted tiny green right floated button" ng-click="removerGerenteSim(gerente)">Sim, Excluir</button>
+                        <button class="ui tiny red right floated basic button" ng-click="gerente.exibirPainelExcluir=false">Cancelar</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--/Lista Gerentes-->
+</div>
+<!--/Tab Gerentes-->
+
+<!--Tab Vendedor-->
+<div class="ui tab" data-tab="vendedor">
+    <!--Status de códigos e pesquisa-->
+    <main class="ui three column grid">
+        <h2 class="ui header column">Vendedores</h2>
+        <div class="column">
+            <div class="ui indicating tiny progress" data-value="0" data-total="10" id="statusCodigosVendedor">
+                <div class="bar"></div>
+                <div class="label">Códigos utilizados</div>
+            </div>
+        </div>
+
+        <div class="column right aligned">
+            <form ng-submit="pesquisarVendedor()">
+                <div class="ui small icon input">
+                    <input placeholder="Pesquisar..." type="text" ng-model="filtroPesquisaVendedor.nome">
+                    <i class="search icon"></i>
+                </div>
+            </form>
+        </div>
+
+    </main>
+    <!--/Status de códigos e pesquisa-->
+
+    <!--Lista Vendedores-->
+    <div ng-repeat="vendedor in vendedores | filter:filtroPesquisaVendedor.nome">
+        <div class="ui segments">
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="six wide column"><strong>Nome: </strong>{{vendedor.nome}}</div>
+                    <div class="three wide column"><strong>CPF: </strong>{{vendedor.cpf}}</div>
+                    <div class="three wide column">
+                        <strong>Situação: </strong> {{vendedor.situacao}}</div>
+                    <div class="four wide column">
+                        <div class=" tiny ui right floated buttons">
+                            <button class="ui positive button" ng-click="vendedor.exibirPainelGerarCodigo=true">Gerar Código</button>
+                            <div class="or" data-text=""></div>
+                            <button class="ui red button" ng-disabled="!vendedor.podeSerRemovidoDaListagem" ng-click="vendedor.exibirPainelExcluir=true">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="vendedor.exibirPainelGerarCodigo" class="ui orange segment">
+                <div class="ui grid">
+                    <div class="eight wide column"><i class="warning circle icon"></i>Deseja Gerar Código para {{vendedor.nome}}?</div>
+                    <div class="eight wide column">
+                        <button class="ui inverted tiny green right floated button" ng-click="gerarCodigoVendedorSim(vendedor)">Sim, Gerar código</button>
+                        <button class="ui tiny red right floated basic button" ng-click="vendedor.exibirPainelGerarCodigo=false">Cancelar</button>
+
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vendedor.gerandoCodigo" class="ui orange segment">
+                <div class="ui grid">
+                    <div class="five wide column">
+                        <div class="ui small active loader"></div>
+                        Gerando código...
+                    </div>
+
+                </div>
+            </div>
+
+            <div ng-if="vendedor.codigoGerado" class="ui success small message segment">
+                <i class="close icon" ng-click="reloadPagina()"></i>
+                <div class="header">
+                    Código gerado com sucesso! Insira o código no local indicado em seu aparelho celular.
+                    <h3>Código: {{vendedor.codigoGerado}}</h3>
+                </div>
+            </div>
+
+            <div ng-if="vendedor.exibirPainelExcluir" class="ui red segment">
+                <div class="ui grid">
+                    <div class="eight wide column"><i class="warning circle icon"></i>Deseja excluir {{vendedor.nome}}?</div>
+                    <div class="eight wide column">
+                        <button class="ui inverted tiny green right floated button" ng-click="removerVendedorSim(vendedor)">Sim, Excluir</button>
+                        <button class="ui tiny red right floated basic button" ng-click="vendedor.exibirPainelExcluir=false">Cancelar</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div ng-repeat="dispositivoAcesso in vendedor.dispositivosAcesso">
+                <div class="ui secondary segment">
+                    <div class="ui grid">
+                        <div class="nine wide column"><strong>Aparelho: </strong>{{dispositivoAcesso.modelo}}</div>
+                        <div class="four wide column"><strong>Código: </strong> {{dispositivoAcesso.codigoAcesso}}</div>
+                        <div class="three wide column">
+                            <button class="ui tiny red right floated button" ng-click="dispositivoAcesso.exibirPainelExcluirAparelho=true">Excluir aparelho</button>
+                        </div>
+                    </div>
+
+
+                    <div ng-if="dispositivoAcesso.exibirPainelExcluirAparelho" class="ui red segment">
+                        <div class="ui grid">
+                            <div class="eight wide column"><i class="warning circle icon"></i>Deseja excluir esse aparelho?</div>
+                            <div class="eight wide column">
+                                <button class="ui inverted tiny green right floated button" ng-click="removerAparelhoVendedorSim(vendedor, dispositivoAcesso)">Sim, Excluir</button>
+                                <button class="ui tiny red right floated basic button" ng-click="dispositivoAcesso.exibirPainelExcluirAparelho=false">Cancelar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Lista Vendedores-->
+
+<!-- Script -->
+<script>
+    $(document).ready(function () {
+        $('.menu .item').tab();
+    });
+</script>
+<!-- /Script -->

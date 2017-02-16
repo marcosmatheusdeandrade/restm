@@ -1,0 +1,16 @@
+br\experience\angular\server\model\Operadora_.class
+br\experience\angular\server\rules\local\ContatoBeanLocal.class
+br\experience\angular\server\eao\OperadoraEAO.class
+br\experience\angular\server\rules\ContatoBean.class
+br\experience\angular\server\model\Contato_.class
+br\experience\angular\server\rules\local\IOperadoraBeanLocal.class
+br\experience\angular\server\dto\OperadoraDTO.class
+br\experience\angular\server\model\Operadora.class
+br\experience\angular\server\rules\local\OperadoraBeanLocal.class
+br\experience\angular\server\dto\ContatoDTO.class
+br\experience\angular\server\converters\dto\ConverterOperadoraDTO.class
+br\experience\angular\server\model\Contato.class
+br\experience\angular\server\rules\OperadoraBean.class
+br\experience\angular\server\rules\local\IContatoBeanLocal.class
+br\experience\angular\server\converters\dto\ConverterContatoDTO.class
+br\experience\angular\server\eao\ContatoEAO.class

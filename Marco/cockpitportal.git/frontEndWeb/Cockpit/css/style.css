@@ -1,0 +1,67 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.ui.container {
+    width: 77%;
+    margin-left: 275px !important;
+    padding-top: 20px;
+}
+
+.ui.segments:first-child {
+    margin-top: 2em;
+}
+
+.ui.grid > .column:not(.row) {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    line-height: 2.1em;
+}
+
+.ui.indicating.progress[data-percent^="1"] .bar,
+.ui.indicating.progress[data-percent^="2"] .bar,
+.ui.indicating.progress[data-percent^="3"] .bar,
+.ui.indicating.progress[data-percent^="4"] .bar {
+    background-color: #66da81
+}
+
+;
+.ui.indicating.progress[data-percent^="5"] .bar {
+    background-color: #ddc928
+}
+
+.ui.indicating.progress[data-percent^="6"] .bar,
+.ui.indicating.progress[data-percent^="7"] .bar,
+.ui.indicating.progress[data-percent^="8"] .bar {
+    background-color: #ddc928
+}
+
+.ui.indicating.progress[data-percent^="9"] .bar {
+    background-color: #e6bb48
+}
+
+.ui.indicating.progress[data-percent^="100"] .bar {
+    background-color: #d95c5c
+}
+
+.ui.progress.success .bar {
+    background-color: #cf3333 !important;
+}
+
+.ui.indicating.progress.success .label {
+    color: #cf3333
+}
+
+
+/*Diretor*/
+
+.botaoSalvarDiretor {
+    padding-top: 23px;
+}

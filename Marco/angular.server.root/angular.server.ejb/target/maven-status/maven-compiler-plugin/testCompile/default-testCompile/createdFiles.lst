@@ -1,0 +1,5 @@
+br\experience\angular\server\test\delegates\OperadoraEAODelegate.class
+br\experience\angular\server\test\eao\ContatoEAOTest.class
+br\experience\angular\server\test\eao\OperadoraEAOTest.class
+br\experience\angular\server\test\util\AngularXPTestUtil.class
+br\experience\angular\server\test\delegates\ContatoEAODelegate.class

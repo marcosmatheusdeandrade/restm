@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="login">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/icon.gif">
+    <title> Portal Cockpit - Login | LinxFarma</title>
+
+    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" href="css/styleLogin.css">
+
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/semantic-ui/dist/semantic.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/scriptLogin.js"></script>
+</head>
+
+<body>
+    <div ng-controller="controllerLogin">
+        <div class="ui one column center aligned stackable grid teste">
+            <div class="column five wide form-holder">
+                <img src="img/logoLogin.png">
+                <h2 class="center aligned header form-head">Portal <span class="fontVermelha">Cockpit</span></h2>
+
+
+                <form ng-submit="logar()">
+                    <div class="ui form">
+
+
+                        <div class="field">
+                            <input type="text" placeholder="Usuário" ng-model="login.usuario" autofocus>
+                        </div>
+                        <div class="field">
+                            <input type="password" placeholder="Senha" ng-model="login.senha">
+                        </div>
+                        <div class="field">
+                            <button class="ui fluid inverted green basic button">Entrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br>
+        <div ng-if="erroLogin">
+            <div class="ui one column center aligned stackable grid">
+                <div class="column five wide">
+                    <div class="ui negative message">
+                        <div class="header">
+                            <i class="warning circle icon"></i> Usuário ou senha está incorreto!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

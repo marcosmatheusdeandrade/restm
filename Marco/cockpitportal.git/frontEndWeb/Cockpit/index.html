@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+
+    <script>
+        if (!window.sessionStorage.logado) {
+            window.location = "login.html";
+        };
+    </script>
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/icon.gif">
+    <title>Portal Cockpit | LinxFarma</title>
+    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
+    <!--<link rel="stylesheet" href="bower_components/ion.rangeslider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" href="bower_components/ion.rangeslider/css/ion.rangeSlider.skinNice.css">-->
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/semantic-ui/dist/semantic.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
+    <!--<script src="bower_components/ion.rangeslider/js/ion.rangeSlider.min.js"></script>-->
+
+</head>
+
+<body ng-controller="index">
+    <!-- Menu -->
+    <div class="ui visible sidebar inverted left fixed vertical menu">
+        <img class="ui centered tiny image" src="img/_logo.png">
+        <div class="item">
+            <p ng-repeat="rede in nomeRede"><i class="home icon"></i>{{rede.descricao}}</p>
+            <p><i class="user icon"></i>{{nomeUsuario}}</p>
+        </div>
+        <a href="#/" class="item">Cockpit Diretor</a>
+        <a href="#vendedores" class="item">Cockpit Vendedor</a>
+        <a href="#editarUserResp" class="item">Seus dados</a>
+        <!--<a href="#metas" class="item">Metas</a>-->
+        <div class="item">
+            <a href="" ng-click="sair()"><i class="power icon"></i>Sair</a>
+        </div>
+        <!--Metas e diretor ficará para uma próxima atualização -->
+    </div>
+    <!--/Menu-->
+
+    <!-- Container que segura os dados das outras telas -->
+    <div class="ui container">
+        <div ng-view></div>
+    </div>
+    <!--/Container-->
+
+
+    <script src="js/config.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

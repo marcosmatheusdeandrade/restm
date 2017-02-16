@@ -1,0 +1,8 @@
+br\linx\model\Usuario_.class
+br\linx\converter\Converter.class
+br\linx\rules\local\RulesLocal.class
+br\linx\model\Usuario.class
+br\linx\rules\local\IRulesLocal.class
+br\linx\eao\UsuarioEAO.class
+br\linx\dto\UsuarioDto.class
+br\linx\regras\Rules.class

@@ -1,0 +1,16 @@
+br\linx\model\Operadora.class
+br\linx\eao\OperadoraEAO.class
+br\linx\rules\OperadoraRulesLocal.class
+br\linx\model\Contato_.class
+br\linx\dto\OperadoraDTO.class
+br\linx\local\rules\ContatoRules.class
+br\linx\local\rules\OperadoraRules.class
+br\linx\model\Operadora_.class
+br\linx\rules\ContatoRulesLocal.class
+br\linx\converter\ConverterUsuario.class
+br\linx\local\rules\IContatoRules.class
+br\linx\converter\ConverterOperadora.class
+br\linx\dto\ContatoDTO.class
+br\linx\eao\ContatoEAO.class
+br\linx\model\Contato.class
+br\linx\local\rules\IOperadoraRules.class

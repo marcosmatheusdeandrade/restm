@@ -1,0 +1,31 @@
+body {
+    background: rgba(0, 0, 0, 0.87);
+    background-size: cover;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.form-holder {
+    margin-top: 12em;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    position: absolute;
+}
+
+.form-head {
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 30px #000;
+    margin: 30px auto;
+    margin-top: -15px;
+}
+
+.remember-me {
+    text-align: left;
+}
+
+.fontVermelha {
+    color: #e91e26;
+}

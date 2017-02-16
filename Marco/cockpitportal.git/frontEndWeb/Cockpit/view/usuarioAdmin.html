@@ -1,0 +1,80 @@
+<h1>ADMIN</h1>
+<div ng-init="consultarAdmin()">
+    <div class="ui grid">
+        <div class="sixteen wide column">
+            <h2>Cadastrar novo usuário admin</h2>
+            <p>Campos com <span class="obrigatorio">*</span> são obrigatórios. </p>
+            <form class="ui form">
+                <div class="three fields">
+                    <div class="field">
+                        <label>Nome <span class="obrigatorio">*</span></label>
+                        <input placeholder="Nome" type="text" ng-model="dadosAseremSalvosAdmin.nome" autofocus>
+                    </div>
+                    <div class="field">
+                        <label>Usuário<span class="obrigatorio">*</span></label>
+                        <input placeholder="Usuário" type="text" ng-model="dadosAseremSalvosAdmin.login">
+                    </div>
+                    <div class="field">
+                        <label>Senha<span class="obrigatorio">*</span></label>
+                        <input placeholder="Senha de no minimo 6 digitos" type="password" ng-model="dadosAseremSalvosAdmin.senha">
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label>E-mail<span class="obrigatorio">*</span></label>
+                        <input placeholder="E-mail" type="email" ng-model="dadosAseremSalvosAdmin.email">
+                    </div>
+
+                    <div class="field">
+                        <label>Tipo de usuário<span class="obrigatorio">*</span></label>
+                        <select ng-model="dadosAseremSalvosAdmin.nivelAcesso">
+                            <option value="">--- Selecione um tipo de usuário ---</option>
+                            <option ng-repeat="nivel in niveisDeAcesso.niveis" value="{{nivel.nome}}">{{nivel.nome}}</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="ui positive button" type="button" ng-click="salvarAdmin()">Salvar</button>
+            </form>
+        </div>
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column right aligned">
+            <form ng-submit="consultarAdmin()">
+                <div class="ui icon input">
+                    <input placeholder="Pesquisar..." type="text" ng-model="pesquisaAdmin">
+                    <i class="search icon"></i>
+                </div>
+            </form>
+            <table class="ui compact striped table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Usuário</th>
+                        <th>E-mail</th>
+                        <th>Tipo de usuário</th>
+                        <th>Data de cadastro</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="administrador in administradores | filter:pesquisaAdmin | orderBy: orderList">
+                        <td>{{administrador.nome}}</td>
+                        <td>{{administrador.login}}</td>
+                        <td>{{administrador.email}}</td>
+                        <td>{{administrador.nivelAcesso}}</td>
+                        <td>{{administrador.dataCadastro | date:'dd/MM/yyyy'}}</td>
+                        <td class="right aligned">
+                            <button class="ui small teal icon button" ng-click="editarAdmin(administrador)">
+                                <i class="write icon"></i>
+                            </button>
+                            <button class="ui small red icon button" ng-click="excluirAdmin(administrador)">
+                                <i class="remove icon"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<html ng-app="lista">
+
+	<head>
+		<title>Usuarios</title>
+	
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/app.css">
+		
+		<script src="lib/angular/angular.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/controllers/usuarioCtrl.js"></script>
+		<script src="value/configValue.js"></script>
+		<script src="js/services/usuarioAPIService.js"></script>
+		<script src="lib/angular/angular-messages.js"></script>
+		
+	</head>
+
+	<body ng-controller="usuarioCtrl">
+		<div class="jumbotron">
+			<h4 ng-bind="app"></h4> 
+	
+			<input class="form-control" type="text" placeholder="Procurar.." ng-model="busca"></input>
+	
+			<table class="table">
+				
+				<tr>
+					<th></th>
+					<th><a href="" ng-click="ordenarPor('id')">Id</a></th>
+					<th> <a href="" ng-click="ordenarPor('nome')"> Nome </a> </th>
+				</tr>
+				
+				<tr ng-repeat="usuario in usuarios | filter:busca | orderBy:campo:OrdenacaoReversa">
+					<td><input type="checkbox" ng-model="usuario.selecionado"/></td>
+					<td>{{usuario.id}}</td>
+					<td>{{usuario.nome}}</td>
+				</tr>
+			</table>
+			
+			<input class="form-control" type="text" ng-model="usuario.nome" placeholder="Nome.." ></input>
+			
+			<button class="btn btn-primary btn-block" ng-click="adicionarUsuario(usuario)" ng-show="!usuarioForm.$invalid"> Adicionar usuario
+			</button>
+			
+			<button class="btn btn-danger btn-block" ng-click="apagarUsuarios()" ng-show="isUsuarioSelecionados()"> Apagar usuario
+			</button>
+			
+		</div>
+	</body>
+
+</html>
